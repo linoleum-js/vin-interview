@@ -1,16 +1,17 @@
 
-import { bindEvents, $ } from '../../util';
+import { bindEvents, $, sortByKey, filterByProperties } from '../../util';
 
 export default class Content {
   constructor(container, props={}) {
     this.container = container;
-    this.render(props);
     this.currentSortKey = '';
     this.isAscOrder = true;
     this.filters = {
       Variable: '',
       Value: ''
     };
+
+    this.render(props);
 
     bindEvents(container, {
       'click .variable-sorter': this.sortVariable.bind(this),
@@ -56,10 +57,10 @@ export default class Content {
       </div>
     `;
     this.$content = $('tbody', this.container);
-    this.update(props);
+    this.updateContent();
   }
 
-  update() {
+  updateContent() {
     let data = this.props.data || [];
     data = this.filter(this.sort(data));
     this.$content.innerHTML = data.map(this.renderRow).join('');
@@ -67,12 +68,12 @@ export default class Content {
 
   sortVariable() {
     this.setSortingRule('Variable');
-    this.update();
+    this.updateContent();
   }
 
   sortValue() {
     this.setSortingRule('Value');
-    this.update();
+    this.updateContent();
   }
 
   setSortingRule(key) {
@@ -87,29 +88,24 @@ export default class Content {
   }
 
   sort(data) {
-    const mult = this.isAscOrder ? 1 : -1;
-    const key = this.currentSortKey;
-
-    const newData = data.slice(0).sort((a, b) => {
-      a = (a[key] || '').toLowerCase();
-      b = (b[key] || '').toLowerCase();
-      return (a < b) ? -mult : (a > b) ? mult : 0;
-    });
-
-    return newData;
+    return sortByKey(
+      data,
+      this.currentSortKey,
+      this.isAscOrder
+    );
   }
 
   filterVariable(event) {
     setTimeout(() => {
       this.setFilter(event.target.value, 'Variable');
-      this.update();
+      this.updateContent();
     });
   }
 
   filterValue(event) {
     setTimeout(() => {
       this.setFilter(event.target.value, 'Value');
-      this.update();
+      this.updateContent();
     });
   }
 
@@ -118,15 +114,6 @@ export default class Content {
   }
 
   filter(data) {
-    return data.filter((item) => {
-      for (let key in this.filters) {
-        const value = (item[key] || '').toLowerCase();
-        const query = this.filters[key].toLowerCase();
-        if (value.indexOf(query) === -1) {
-          return false;
-        }
-      }
-      return true;
-    });
+    return filterByProperties(data, this.filters);
   }
 }

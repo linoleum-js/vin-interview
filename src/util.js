@@ -58,3 +58,26 @@ export function isVinValid(vin) {
 
   return validate(vin);
 }
+
+export function sortByKey(data, key, asc) {
+  const mult = asc ? 1 : -1;
+
+  return data.slice(0).sort((a, b) => {
+    a = (a[key] || '').toLowerCase();
+    b = (b[key] || '').toLowerCase();
+    return (a < b) ? -mult : (a > b) ? mult : 0;
+  });
+}
+
+export function filterByProperties(data, filters) {
+  return data.filter((item) => {
+    for (let key in filters) {
+      const value = (item[key] || '').toLowerCase();
+      const query = filters[key].toLowerCase();
+      if (value.indexOf(query) === -1) {
+        return false;
+      }
+    }
+    return true;
+  });
+}
