@@ -1,9 +1,9 @@
 {
-  "name": "bookva",
+  "name": "vin",
   "version": "0.0.1",
   "scripts": {
     "start": "webpack-dev-server --content-base build/",
-    "build": "webpack",
+    "build": "webpack"
   },
   "devDependencies": {
     "babel-core": "^6.17.0",

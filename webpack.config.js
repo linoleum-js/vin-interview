@@ -11,12 +11,12 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [".webpack.js", ".web.js", ".js", ".json", '.tsx']
+    extensions: [".webpack.js", ".web.js", ".js", ".json"]
   },
 
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.js/,
       loader: 'babel-loader'
     }, {
       test: /\.css$/,
