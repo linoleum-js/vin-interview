@@ -1,13 +1,18 @@
 
-import Storage from './Storage';
+import StorageService from './StorageService';
+import ConnectionState from './ConnectionState';
 
 const BASE_URL = 'https://vpic.nhtsa.dot.gov/api/';
 
 export default class NhtsaApi {
   static getDataByVin(vin, callbacks) {
-    const data = Storage.get(vin);
+    const data = StorageService.get(vin);
     if (data) {
       callbacks.complete(data);
+      return;
+    }
+
+    if (!ConnectionState.isOnline()) {
       return;
     }
 
@@ -18,7 +23,7 @@ export default class NhtsaApi {
       if (done === 1) {
         const data = JSON.parse(xhr.response);
         callbacks.complete(data);
-        Storage.set(vin, data);
+        StorageService.set(vin, data);
       }
       callbacks.progress(done);
     })

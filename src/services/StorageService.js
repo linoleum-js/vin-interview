@@ -12,7 +12,7 @@ const getStorageData = () => {
   return storageData;
 };
 
-export default class Storage {
+export default class StorageService {
   static set(vin, data) {
     const storageData = getStorageData();
     storageData[vin] = data;

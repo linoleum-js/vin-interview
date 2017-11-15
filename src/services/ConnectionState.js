@@ -9,4 +9,8 @@ export default class ConnectionState {
       callback(false);
     });
   }
+
+  static isOnline() {
+    return navigator.onLine;
+  }
 }
