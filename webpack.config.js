@@ -23,11 +23,7 @@ module.exports = {
       loader: combineLoaders([{
         loader: 'style-loader'
       }, {
-        loader: 'css-loader',
-        query: {
-          modules: true,
-          localIdentName: '[local]___[hash:base64:5]'
-        }
+        loader: 'css-loader'
       }])
     }, {
       test: /\.html$/,
