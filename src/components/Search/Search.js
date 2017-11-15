@@ -8,8 +8,8 @@ export default class Search {
     this.container = container;
     this.props = props;
     container.innerHTML = `
-      <input type="text" />
-      <button disabled>🔍</button>
+      <input type="text" value="JH4TB2H26CC000000"/>
+      <button >🔍</button>
       <div class="progress-bar"></div>
     `;
 
@@ -46,7 +46,6 @@ export default class Search {
   }
 
   onProgress(done) {
-    console.log(done);
     this.$progressBar.style.width = done * 100 + '%';
   }
 

@@ -11,18 +11,18 @@ export default class App {
     container.innerHTML = `
       <div>
         <div class="search-bar"></div>
-        <div class="contett-area"></div>
+        <div class="content-area"></div>
       </div>
     `;
 
-    this.search = new Search($('.search-bar'), {
+    this.search = new Search($('.search-bar', container), {
       onSearch: this.onSearch.bind(this)
     });
 
-    this.content = new Content($('.content-area'));
+    this.content = new Content($('.content-area', container));
   }
 
   onSearch(data) {
-    // console.log(data);
+    this.content.render({ data: data.Results });
   }
 }

@@ -8,7 +8,7 @@ export default class NhtsaApi {
     xhr.addEventListener('progress', (event) => {
       const done = event.loaded / event.total;
       if (done === 1) {
-        callbacks.complete(xhr.response);
+        callbacks.complete(JSON.parse(xhr.response));
       }
       callbacks.progress(done);
     })
