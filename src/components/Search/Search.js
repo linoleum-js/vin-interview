@@ -3,7 +3,16 @@ import { bindEvents, $, isVinValid } from '../../util';
 import NhtsaApi from '../../services/NhtsaApi';
 import './style.css';
 
+
+/**
+ * Represents search bar
+ */
 export default class Search {
+  /**
+   * @constructor
+   * @param {Node} container - mount point
+   * @param {Function} props.onSeacrh - callack called when search is performed
+   */
   constructor(container, props) {
     this.container = container;
     this.props = props;
@@ -24,7 +33,12 @@ export default class Search {
     this.$input = $('input', container);
     this.$progressBar = $('.js-progress-bar', container);
   }
- /// JH4TB2H26CC000000
+
+  /**
+   * Validate vin, if valid - unblock search button
+   *
+   * @param {Event} event - keydown event
+   */
   onChange(event) {
     // since keydown event fiers before the value change,
     // we have to wait for it...

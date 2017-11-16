@@ -16,6 +16,9 @@ if (!Element.prototype.matches) {
 
 /**
  * Backbone-like event handling
+ * @param {Node} container
+ * @param {Object} obj - object, which key is the event name + css selector
+ *                       and value is a callback function
  */
 export function bindEvents(container, obj) {
   for (let eventData in obj) {
@@ -32,10 +35,19 @@ export function bindEvents(container, obj) {
   }
 }
 
+/**
+ * short version of querySelector
+ * @param {string} selector
+ * @param {Node?} context
+ */
 export function $(selector, context=document) {
   return context.querySelector(selector);
 }
 
+/**
+ * Validates vin (kinda)
+ * @param {string} vin
+ */
 export function isVinValid(vin) {
   function transliterate(c) {
     return '0123456789.ABCDEFGH..JKLMN.P.R..STUVWXYZ'.indexOf(c) % 10;
@@ -59,6 +71,14 @@ export function isVinValid(vin) {
   return validate(vin);
 }
 
+/**
+ * Sorts array by the given property name
+ * IMPORTANT: not changes the original array
+ * @param {Array} data
+ * @param {string} key
+ * @param {Boolean} asc - true is ascending order, false otherwise
+ * @retrun {Array} - sorted array
+ */
 export function sortByKey(data, key, asc) {
   const mult = asc ? 1 : -1;
 
@@ -69,6 +89,12 @@ export function sortByKey(data, key, asc) {
   });
 }
 
+/**
+ * Filters array by the given rules
+ * @param {Array} data
+ * @param {Oject} filters - ojbect, which key is a property name to be filtered
+ *                          and the value is query string
+ */
 export function filterByProperties(data, filters) {
   return data.filter((item) => {
     for (let key in filters) {

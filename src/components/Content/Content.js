@@ -3,7 +3,15 @@ import './style.css';
 
 import { bindEvents, $, sortByKey, filterByProperties } from '../../util';
 
+/**
+ * Represents a table with a description of vehicle
+ */
 export default class Content {
+  /**
+   * @constructor
+   * @param {Node} container - mount point
+   * @param {Object} props
+   */
   constructor(container, props={}) {
     this.container = container;
     this.currentSortKey = '';
@@ -23,6 +31,11 @@ export default class Content {
     });
   }
 
+  /**
+   * Renders table row
+   * @param {string} data.Variable
+   * @param {any} data.Value
+   */
   renderRow(data) {
     return `
       <tr>
@@ -46,8 +59,9 @@ export default class Content {
   }
 
   render(props) {
-    const data = props.data || [];
+    //
     this.props = props;
+    const data = props.data || [];
     this.container.innerHTML = `
       <div>
         <table>
@@ -62,12 +76,21 @@ export default class Content {
     this.updateContent();
   }
 
+  /**
+   * Rerender content area
+   */
   updateContent() {
     let data = this.props.data || [];
+    // sort and filter before rendering
     data = this.filter(this.sort(data));
     this.$content.innerHTML = data.map(this.renderRow).join('');
   }
 
+  /**
+   * Only sets a sorting rules. Actual sorting and filtering
+   * sorting takes place in updateContent.
+   * The same applies to all the sorting and filtering methods
+   */
   sortVariable() {
     this.setSortingRule('Variable');
     this.updateContent();
@@ -89,14 +112,6 @@ export default class Content {
     this.currentSortKey = key;
   }
 
-  sort(data) {
-    return sortByKey(
-      data,
-      this.currentSortKey,
-      this.isAscOrder
-    );
-  }
-
   filterVariable(event) {
     setTimeout(() => {
       this.setFilter(event.target.value, 'Variable');
@@ -115,7 +130,23 @@ export default class Content {
     this.filters[key] = query;
   }
 
+  /**
+   * Actual filtering
+   * @param {Array} data
+   */
   filter(data) {
     return filterByProperties(data, this.filters);
+  }
+
+  /**
+   * Actual sorting
+   * @param {Array} data
+   */
+  sort(data) {
+    return sortByKey(
+      data,
+      this.currentSortKey,
+      this.isAscOrder
+    );
   }
 }

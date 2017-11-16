@@ -16,6 +16,7 @@
 
 .content-area td:first-child {
   border-right: 1px solid #ccc;
+  width: 30%;
 }
 
 .content-area tr:nth-child(2n) {

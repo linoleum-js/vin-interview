@@ -1,5 +1,8 @@
 
 export default class ConnectionState {
+  /**
+   * @param {Function} callback - will recieve boolean as an argument
+   */
   static onStateChange(callback) {
     window.addEventListener('online', () => {
       callback(true);
@@ -10,6 +13,9 @@ export default class ConnectionState {
     });
   }
 
+  /**
+   * @return {Boolean}
+   */
   static isOnline() {
     return navigator.onLine;
   }
