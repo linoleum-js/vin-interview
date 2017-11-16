@@ -1,4 +1,6 @@
 
+import './style.css';
+
 import { bindEvents, $, sortByKey, filterByProperties } from '../../util';
 
 export default class Content {

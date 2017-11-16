@@ -5,3 +5,27 @@
   transition: width .5s linear;
   width: 0;
 }
+
+.search {
+  text-align: center;
+  font-size: 0;
+  margin-bottom: 20px;
+}
+
+.search input,
+.search button {
+  height: 40px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  vertical-align: top;
+  font-size: 16px;
+}
+
+.search input {
+  padding: 0 5px;
+  width: 600px;
+}
+
+.search button {
+  width: 40px;
+}

@@ -1,5 +1,6 @@
 
 import { bindEvents, $ } from '../../util';
+import './style.css';
 
 import Search from '../Search/Search';
 import Content from '../Content/Content';
@@ -12,10 +13,12 @@ export default class App {
     this.container = container;
 
     container.innerHTML = `
-      <div>
+      <div class="app">
         <header class="header"></header>
-        <div class="search-bar"></div>
-        <div class="content-area"></div>
+        <div class="wrap">
+          <div class="search-bar"></div>
+          <div class="content-area"></div>
+        </wrap>
       </div>
     `;
 

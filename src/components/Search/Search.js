@@ -8,9 +8,11 @@ export default class Search {
     this.container = container;
     this.props = props;
     container.innerHTML = `
-      <input type="text" value="JH4TB2H26CC000000"/>
-      <button >🔍</button>
-      <div class="progress-bar"></div>
+      <div class="search">
+        <input type="text" value="JH4TB2H26CC000000"/>
+        <button>🔍</button>
+        <div class="js-progress-bar"></div>
+      </div>
     `;
 
     bindEvents(container, {
@@ -20,7 +22,7 @@ export default class Search {
 
     this.$button = $('button', container);
     this.$input = $('input', container);
-    this.$progressBar = $('.progress-bar', container);
+    this.$progressBar = $('.js-progress-bar', container);
   }
  /// JH4TB2H26CC000000
   onChange(event) {

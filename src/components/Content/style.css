@@ -1,0 +1,28 @@
+
+
+.content-area table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.content-area thead td {
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+
+.content-area td {
+  padding: 0 10px;
+}
+
+.content-area td:first-child {
+  border-right: 1px solid #ccc;
+}
+
+.content-area tr:nth-child(2n) {
+  background-color: #f0f0f0;
+}
+
+.content-area th {
+  cursor: pointer;
+  user-select: none;
+}

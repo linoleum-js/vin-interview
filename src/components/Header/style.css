@@ -1,0 +1,16 @@
+
+.header {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.logo {
+  float: left;
+}
+
+.connection-status {
+  float: right;
+  color: #990012;
+}
